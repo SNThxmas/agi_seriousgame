@@ -20,7 +20,7 @@ Création de Site Web et BDD pour Agilean et log.
 ## Roadmap
 - [x] Création des templates / static
 - [x] Création de la BDD
-- [ ] Lien avec Flask
+- [x] Lien avec Flask
 
 ---
 
