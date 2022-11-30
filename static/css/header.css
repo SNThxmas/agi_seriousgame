@@ -1,0 +1,45 @@
+.menu{
+    background-color: rgb(220, 93, 20);
+    width: 100%;
+    height:66px;
+    line-height:66px;
+
+}
+
+.m-left{
+    float:left;
+
+}
+
+.logo{
+    margin:0;padding:0;
+    color:aliceblue;
+    text-transform: uppercase;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 900;
+    font-size: 40px;
+    letter-spacing: 1px;
+
+}
+
+.m-right{
+    float:right;
+
+}
+
+.m-link{
+    text-decoration: none;
+    color:rgb(255, 255, 255);
+    text-transform: uppercase;
+    font-weight: 700;
+    padding:0;margin: 0 15px;
+    border-bottom: 2px solid transparent;
+    transition: all 0.3s ease-in-out;
+
+
+}
+.m-link:hover{
+    border-bottom: 2px solid rgb(53, 53, 53);
+    color: rgb(53, 53, 53);
+
+}

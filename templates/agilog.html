@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="UTF-8">
+        <title>AGI</title>
+        <link rel="stylesheet" href="../static/css/normalize.css">
+        <link rel="stylesheet" href="../static/css/header.css">
+        <link rel="stylesheet" href="../static/css/bannier.css">
+    </head>
+
+    <body>
+        <header role="header">
+            <nav class="menu" role="navigation">
+                <div class="inner">
+                    <div class="m-left">
+                        <h1 class="logo">AGI</h1>
+                    </div>
+                    <div class="m-right">
+                        <a href="/" class="m-link" >Accueil</a>
+                        <a href="espace-client" class="m-link" >Espace client</a>
+                        <a href="agilog" class="m-link" >AgiLog</a>
+                        <a href="agilean" class="m-link" >AgiLean</a>
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+        <section class="bannière-agilog">
+            <div class="inner">
+                <h1>AGILOG</h1>
+                <h3>Bienvenue sur l'espace d'AgiLog, la plateforme logistique la plus efficace sur le marché. Moderne, éco-responsable et classée dans le top 10 du classement de l’institut Great Place to Work, AgiLog est l'entreprise de demain! </h3>
+            </div>
+        </section>
+
+        <div class="state_stock">
+            <div class="inner">
+                <h2>État des stocks</h2><br/>
+                <div class="lp_table">
+                    <div class="lp_entetes">
+                        <div class="lp_entete">ID de la pièce</div>
+                        <div class="lp_entete">Quantité restante</div>
+                        <!-- <div class="lp_entete">Quantité nécessaire par rapport aux cdes actuelles</div> -->
+                    </div>
+
+                    {% for element in stocklist %}
+                    <div class="lp_ligne">
+                            <div class="lp_cellule">{{ element['id_piece'] }}</div>
+                            <div class="lp_cellule">{{ element['stock_log'] }}</div>
+                            <!-- <div class="lp_cellule">{{ stocklist['qtenecessaire'] }}</div> -->
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+        <div class="changestate_stock">
+            <div class="inner">
+                <h2>Mettre à jour les stocks</h2>
+
+                <div class="row">
+                    <form method="post">
+                        <!--* NOTE: Convert option -> tickbox -->
+                        <label for='id_part'><h3>Pièce</h3></label>
+                        <select name='id_part' required>
+                            <option value='P1*1'>P1*1</option>
+                            <option value='P1*2'>P1*2</option>
+                            <option value='P1*3'>P1*3</option>
+                            <option value='P1*4'>P1*4</option>
+                            <option value='P1*6'>P1*6</option>
+                            <option value='PL2*2'>PL2*2</option>
+                            <option value='PL2*4'>P2*4</option>
+                            <option value='PL2*8'>P2*8</option>
+                            <option value='PL2*12'>P2*12</option>
+                            <option value='P4*4'>P4*4</option>
+                            <option value='B1*4'>B1*4</option>
+                            <option value='B2*4'>B2*4</option>
+                            <option value='B2*2'>B2*2</option>
+                            <option value='MY'>MY</option>
+                            <option value='JT'>JT</option>
+                            <option value='PN'>PN</option>
+                            <option value='GR'>GR</option>
+                            <option value='RA'>RA</option>
+                            <option value='FV'>FV</option>
+                            <option value='FR'>FR</option>
+                            <option value='FB'>FB</option>
+                            <option value='PB'>PB</option>
+                            <option value='AT'>AT</option>
+                            <option value='VL'>VL</option>
+                            <option value='SG'>SG</option>
+                            <option value='FN'>FN</option>
+                            <option value='AC'>AC</option>
+                            <option value='EQ'>EQ</option>
+                            <option value='TT'>TT</option>
+                            <option value='An'>An</option>
+                            <option value='AA'>AA</option>
+                            <option value='CA'>CA</option>
+                        </select>
+                        <br>
+                        <label for='role'><h3>Quantité</h3></label>
+                        <input type="number" name="quantity" min="1" required>
+                        <br>
+                        <input type='submit' value='ajouter' formaction="/log_csstock">
+                    </form><br>
+                </div>
+            </div>
+        </div>
+
+        <div class="state_agilog">
+            <div class="inner">
+                <h2>Commandes d'AgiLean</h2><br/>
+                <div class="lp_table">
+                    <div class="lp_entetes">
+                        <div class="lp_entete">Numéro de la commande</div>
+                        <div class="lp_entete">Date de la commande</div>
+                        <div class="lp_entete">Modèle du véhicule</div>
+                        <div class="lp_entete">Options</div>
+                        <div class="lp_entete">Etat</div>
+                    </div>
+                    {% for element in commandes_kit %}
+                    <div class="lp_ligne">
+                        <div class="lp_cellule">{{ element['id'] }}</div>
+                        <div class="lp_cellule">{{ element['date'] }}</div>
+                        <div class="lp_cellule">{{ element['modele'] }}</div>
+                        <div class="lp_cellule">{{ element['options'] }}</div>
+                        <div class="lp_cellule">{{ element['etat'] }}</div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+        <div class="changestate_agilog">
+            <div class="inner">
+                <h2>Changer l'état d'une commande</h2>
+
+                <div class="row">
+                    <form method="post">
+                        <h3>Numéro de Commande</h3> <br>
+                        <input type="number" name="num_cmde_log" min="1" required><br>
+                    
+                        <h3>État de la commande</h3> 
+                        <select name='role' required>
+                            <option value='traitement_norms'>Traitement</option>
+                            <option value='livraison'>Attente livraison AgiGP</option>
+                            <option value='expediee'>Expédiée</option>
+                            <option value='traitement_prio'>Traitement prioritaire</option>
+                        </select>
+                        <input type='submit' value='ajouter' formaction="/log_modify">
+                    </form><br/>
+                </div>
+            </div>
+        </div>
+
+        <script type="text/javascript" src="../static/scripts/autoReload.js"></script>
+    </body>
+</html>

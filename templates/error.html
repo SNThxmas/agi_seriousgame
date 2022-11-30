@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>404 - AGI</title>
+        <link rel="stylesheet" href="../static/css/normalize.css">
+        <link rel="stylesheet" href="../static/css/header.css">
+        <link rel="stylesheet" href="../static/css/bannier.css">
+    </head>
+
+    <body>
+        <header role="header">
+            <nav class="menu" role="navigation">
+                <div class="inner">
+                    <div class="m-left">
+                        <h1 class="logo">AGI</h1>
+                    </div>
+                    <div class="m-right">
+                        <a href="/" class="m-link" >Accueil</a>
+                        <a href="espace-client" class="m-link" >Espace client</a>
+                        <a href="agilog" class="m-link" >AgiLog</a>
+                        <a href="agilean" class="m-link" >AgiLean</a>
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+        <section>
+        <div class="bannière-error">
+            <div class="inner">
+                <h1>Erreur {{ errno }}</h1>
+                <h3>{{ errmsg }}</h3>
+                <video width="50" height="50" controls><source src="../static/audio/soundtest.mp3" type="video/mp4"></video>
+            </div>
+        </div>
+        </section>
+    </body>
+</html>

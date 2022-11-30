@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="UTF-8">
+        <title>AGI</title>
+        <link rel="stylesheet" href="../static/css/normalize.css">
+        <link rel="stylesheet" href="../static/css/header.css">
+        <link rel="stylesheet" href="../static/css/bannier.css">
+    </head>
+
+    <body>
+        <header role="header">
+            <nav class="menu" role="navigation">
+                <div class="inner">
+                    <div class="m-left">
+                        <h1 class="logo">AGI</h1>
+                    </div>
+                    <div class="m-right">
+                        <a href="/" class="m-link" >Accueil</a>
+                        <a href="espace-client" class="m-link" >Espace client</a>
+                        <a href="agilog" class="m-link" >AgiLog</a>
+                        <a href="agilean" class="m-link" >AgiLean</a>
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+        <section class="bannière-client">
+            <div class="inner">
+                <h1>ESPACE CLIENT</h1>
+                <h3>Ici, le client pourra passer des commandes, les consulter et même changer l'état de chacune d'entre elles. L'objectif est de donner une vision d'ensemble au client tout en lui proposant une interface ludique.</h3>
+            </div>
+        </section>
+
+        <div class="formulaire">
+            <div class="inner">
+                <h2>Passer une commande</h2>
+                <div class="column">
+                    <form method="post">
+
+                        <label for='modele'><h3>Véhicule</h3></label>
+                        <select name='modele' required>
+                        <option value='CCO'>CCO</option>
+                        <option value='CCF'>CCF</option>
+                        <option value='CLO'>CLO</option>
+                        <option value='CLF'>CLF</option>
+                        </select>
+
+                        <label for='options'><h3>Option(s) supplémentaire(s) souhaitée(s)</h3></label>
+                        <div class="options">
+                            <br>
+                            <input type="checkbox" name="antenne" id="antenne"><h4>Antenne</h4><br>
+                            <input type="checkbox" name="attache" id="attache"><h4>Attache</h4><br>
+                            <input type="checkbox" name="attelage" id="attelage"><h4>Crochet attelage</h4><br>
+                            <br>  
+                        </div>
+
+                        <input type='submit' value='COMMANDER' formaction="/cli_commande">
+                    </form><br>
+                </div>
+            </div>
+        </div>
+
+        <div class="state">
+            <div class="inner">
+                <h2>États des commandes</h2><br/>
+                <div class="lp_table">
+                    <div class="lp_entetes">
+                        <div class="lp_entete">Numéro de la commande</div>
+                        <div class="lp_entete">Date de la commande</div>
+                        <div class="lp_entete">Modèle du véhicule</div>
+                        <div class="lp_entete">Option(s)</div>
+                        <div class="lp_entete">État</div>
+                    </div>
+                    {% for commande in commandes %}
+                    <div class="lp_ligne">
+                        <div class="lp_cellule">{{ commande['numero_cmde'] }}</div>
+                        <div class="lp_cellule">{{ commande['date_cmde'] }}</div>
+                        <div class="lp_cellule">{{ commande['modele'] }}</div>
+                        <div class="lp_cellule">{{ commande['option'] }}</div>
+                        <div class="lp_cellule">{{ commande['etat'] }}</div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+        <div class="changestate">
+            <div class="inner">
+                <h2>Changer l'état d'une commande</h2>
+
+                <div class="row">
+                    <form method="post">
+                        <center>
+                            <h3>Numéro de Commande</h3> 
+                            <input type="number" name="num_cmd" min="1" required><br>
+                        </center>
+                        <br>
+                        <center>
+                        <h3>État de la commande</h3> 
+                        <select name='statut' required>
+                            <option value='Ok'>Conforme</option>
+                            <option value='Retour'>Retournée (non conforme)</option>
+                            <option value='Attente'>Attente de livraison</option>
+                        </select>
+                        </center>
+                        <br>
+                        <center>
+                            <input type='submit' value='ajouter' formaction="/cli_state">
+                        </center>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+
+        <script type="text/javascript" src="../static/scripts/autoReload.js"></script>
+    </body>
+</html>

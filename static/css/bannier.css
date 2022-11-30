@@ -1,0 +1,54 @@
+.bannière-error{
+    min-height:100vh;
+    background-image: url("../images/bannière_404.gif");
+    background-size: cover;
+    color:#fff;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+}
+
+.bannière_accueil{
+    min-height:100vh;
+    background-image: url("../images/bannière_accueil.jpg");
+    background-size: cover;
+    color:#fff;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+}
+
+.bannière-client{
+    min-height:100vh;
+    background-image: url("../images/bannière_client.jpg");
+    background-size: cover;
+    color:#fff;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+}
+
+.bannière-agilog{
+    min-height:100vh;
+    background-image: url("../images/bannière_agilog.jpg");
+    background-size: cover;
+    color:#fff;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+}
+
+.bannière-agilean{
+    min-height:100vh;
+    background-image: url("../images/bannière_agilean.jpg");
+    background-size: cover;
+    color:#fff;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+}

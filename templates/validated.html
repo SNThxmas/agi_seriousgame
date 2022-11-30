@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>AGI</title>
+        <link rel="stylesheet" href="../static/css/normalize.css">
+        <link rel="stylesheet" href="../static/css/header.css">
+        <link rel="stylesheet" href="../static/css/bannier.css">
+    </head>
+    <body>
+        <header role="header">
+            <nav class="menu" role="navigation">
+                <div class="inner">
+                    <div class="m-left">
+                        <h1 class="logo">AGI</h1>
+                    </div>
+                    <div class="m-right">
+                        <a href="/" class="m-link" >Accueil</a>
+                        <a href="espace-client" class="m-link" >Espace client</a>
+                        <a href="agilog" class="m-link" >AgiLog</a>
+                        <a href="agilean" class="m-link" >AgiLean</a>
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+        <section class="bannière_accueil">
+            <div class="inner">
+                <h1>Merci pour votre commande.</h1><br>
+                <h3>Vous allez revenir en arrière automatiquement. Si ce n'est pas le cas, cliquez <a style="color:orange" href="/" onclick="return Previous();">ici</a>.</h3>
+            </div>
+        </section>
+        <script type="text/javascript" src="../static/scripts/autoReturn.js"></script>
+        <script>function Previous(){window.history.back();}</script>
+    </body>
+</html>

@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>AGI</title>
+        <link rel="stylesheet" href="../static/css/normalize.css">
+        <link rel="stylesheet" href="../static/css/header.css">
+        <link rel="stylesheet" href="../static/css/bannier.css">
+    </head>
+
+    <body>
+        <header role="header">
+            <nav class="menu" role="navigation">
+                <div class="inner">
+                    <div class="m-left">
+                        <h1 class="logo">AGI</h1>
+                    </div>
+                    <div class="m-right">
+                        <a href="/" class="m-link" >Accueil</a>
+                        <a href="espace-client" class="m-link" >Espace client</a>
+                        <a href="agilog" class="m-link" >AgiLog</a>
+                        <a href="agilean" class="m-link" >AgiLean</a>
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+        <section class="bannière-agilean">
+            <div class="inner">
+                <h1>ESPACE AGILEAN</h1>
+                <h3>Chez AgiLean, la qualité Prean! Rapidité et qualité seront alliés alors n'hésitez plus et foncez! Un nombre incalculable d'options (3) seront à votre disposition pour vos futurs véhicules.</h3>
+                <br>
+            </div>
+        </section>
+
+        <div class="state_agilean">
+            <div class="inner">
+                <h2>Commandes Client</h2><br/>
+
+                <div class="lp_table">
+                    <div class="lp_entetes">
+                        <div class="lp_entete"><b><center>Numéro de la commande</center></b></div>
+                        <div class="lp_entete"><b><center>Date de la commande</center></b></div>
+                        <div class="lp_entete"><b><center>Modèle du véhicule</center></b></div>
+                        <div class="lp_entete"><b><center>Option(s)</center></b></div>
+                        <div class="lp_entete"><b><center>État</center></b></div>
+                    </div>
+
+                    {% for element in commandes_cl %}
+                    <div class="lp_ligne">
+                        <div class="lp_cellule"><center>{{ element['numero_cmde'] }}</center></div>
+                        <div class="lp_cellule"><center>{{ element['date_cmde'] }}</center></div>
+                        <div class="lp_cellule"><center>{{ element['modele'] }}</center></div>
+                        <div class="lp_cellule"><center>{{ element['option'] }}</center></div>
+                        <div class="lp_cellule"><center>{{ element['etat'] }}</center></div>
+                    </div>
+                    {% endfor %}
+                </div>
+
+            </div>
+        </div>
+
+        <div class="changestate_agilean">
+            <div class="inner">
+                <h2>Changer état commande client</h2>
+                <div class="row">
+                    <form method="post">
+                        <center>
+                            <h3>Numéro de Commande</h3> 
+                            <input type="number" name="num_cmd" min="1" required>
+                        </center>
+                        <br>
+                        <center>
+                            <h3>État de la commande</h3>
+                            <select name='statut' required>
+                                <option value='Expédiée'>Expédiée</option>
+                                <option value='Assemblage'>Assemblage</option>
+                                <option value='Attente_Agilog'>Attente Agilog</option>
+                                <option value='Retournée'>Retournée</option>
+                                <option value='Validee'>Validée</option>
+                            </select>
+                        </center>
+                        <br>
+                        <center>
+                            <input type='submit' value='MODIFIER' formaction="/lean_cslean">
+                        </center>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="cde_agilog">
+            <div class="inner">
+                <h2>Passer commande à AgiLog</h2>
+
+                <div>
+                    <form method="post">
+                        <center>
+                            <label for="modele"><h3>Modèle commandé</h3></label>
+                            <select name='modele' required>
+                            <option value='CCO'>CCO</option>
+                            <option value='CCF'>CCF</option>
+                            <option value='CLO'>CLO</option>
+                            <option value='CLF'>CLF</option>
+                            </select>
+                        </center>
+
+                        <center>
+                            <label for='option'><h3><BR>Options</h3></label>
+                            <div class="option">
+                                <br>
+                                <input type="checkbox" name="antenne" value="True"><h4>Antenne</h4><br>
+                                <input type="checkbox" name="attache" value="True"><h4>Attache</h4><br>
+                                <input type="checkbox" name="attelage" value="True"><h4>Attelage</h4><br>
+                                <br>
+                            </div>
+                        </center>
+                        <br>
+                        <center>
+                            <input type='submit' value='COMMANDER' formaction="/lean_clog" >
+                        </center>
+
+                    </form>
+                </div>
+                
+            </div>
+
+        </div>
+
+        <div class="state_agilean-log">
+            <div class="inner">
+                <h2>Etat commandes AGILOG</h2><br/>
+
+                <div class="lp_table">
+                    <div class="lp_entetes">
+                        <div class="lp_entete"><b><center>Numéro de la commande</center></b></div>
+                        <div class="lp_entete"><b><center>Date de la commande</center></b></div>
+                        <div class="lp_entete"><b><center>Liste de pièces commandées</center></b></div>
+                        <div class="lp_entete"><b><center>État</b></div>
+                    </div>
+
+                    {% for element in commandes_ll %}
+                    <div class="lp_ligne">
+                        <div class="lp_cellule"><center>{{ element['id_cmde'] }}</center></div>
+                        <div class="lp_cellule"><center>{{ element['date_cmde'] }}</center></div>
+                        <div class="lp_cellule"><center>{{ element['pieces'] }}</center></div>
+                        <div class="lp_cellule"><center>{{ element['etat'] }}</center></div>
+                    </div>
+                    {% endfor %}
+                </div>
+
+            </div>
+        </div>
+
+        <div class="changestate_agilean-log">
+            <div class="inner">
+                <h2>Changer état cmd agilog</h2>
+
+                <div class="row">
+                    <form method="post">
+                        <center>
+                            <h3>Numéro de Commande</h3> 
+                            <input type="number" name="num_cmd" min="1" required>
+                        </center>
+                        <br>
+                        <center>
+                            <h3>État de la commande</h3> 
+                            <select name='statut'>
+                                <option value='Ok'>Commande conforme</option>
+                                <option value='Retournée'>Commande retournée</option>
+                                <option value='Attente'>Attente de livraison</option>
+                            </select>
+                        </center>
+                        <br>
+                        <center>
+                            <input type='submit' value='MODIFIER' formaction="/lean_csleanlog">
+                        </center>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript" src="../static/scripts/autoReload.js"></script>
+    </body>
+</html>
